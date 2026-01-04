@@ -360,6 +360,27 @@ function closeViewModal() {
     if (modal) modal.classList.add('hidden');
 }
 
+// Full Image Modal Functions
+function expandImage() {
+    const viewModalImage = document.getElementById('viewModalImage');
+    const fullImageView = document.getElementById('fullImageView');
+    const fullImageModal = document.getElementById('fullImageModal');
+    
+    if (viewModalImage && fullImageView && fullImageModal) {
+        fullImageView.src = viewModalImage.src;
+        fullImageModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+}
+
+function closeFullImage() {
+    const fullImageModal = document.getElementById('fullImageModal');
+    if (fullImageModal) {
+        fullImageModal.classList.add('hidden');
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+}
+
 function copyGalleryPrompt() {
     const id = document.getElementById('viewPromptModal')?.dataset.promptId;
     if (id) copyPromptById(id);
@@ -1310,6 +1331,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Escape key closes modals
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
+        closeFullImage();
         closeAdminPanel();
         closeViewModal();
         closeSubmitModal();

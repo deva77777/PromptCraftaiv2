@@ -829,13 +829,24 @@
         </div>
     </div>
 
+    <!-- ==================== FULL IMAGE MODAL ==================== -->
+    <div id="fullImageModal" class="fixed inset-0 z-[60] hidden bg-black/95 flex items-center justify-center p-4 cursor-zoom-out" onclick="closeFullImage()">
+        <button onclick="closeFullImage()" class="absolute top-4 right-4 bg-white/10 hover:bg-white/20 rounded-full w-12 h-12 flex items-center justify-center text-white text-2xl z-10">&times;</button>
+        <img id="fullImageView" class="max-w-full max-h-full object-contain" onclick="event.stopPropagation()">
+        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white/60 text-sm">Click anywhere to close</div>
+    </div>
+
     <!-- ==================== VIEW PROMPT MODAL ==================== -->
     <div id="viewPromptModal" class="fixed inset-0 z-50 hidden modal bg-black/70 flex items-center justify-center p-4">
-        <div class="bg-gray-900 rounded-2xl border border-white/20 w-full max-w-3xl max-h-[90vh] overflow-hidden">
-            <div class="relative">
-                <img id="viewModalImage" class="w-full h-64 md:h-80 object-cover">
+        <div class="bg-gray-900 rounded-2xl border border-white/20 w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
+            <div class="relative flex-shrink-0 bg-black/50">
+                <img id="viewModalImage" class="w-full max-h-[50vh] object-contain mx-auto">
                 <button onclick="closeViewModal()" class="absolute top-4 right-4 bg-black/50 hover:bg-black/70 rounded-full w-10 h-10 flex items-center justify-center text-white text-xl">&times;</button>
                 <div id="viewModalAiBadge" class="absolute bottom-4 left-4"></div>
+                <!-- Expand Image Button -->
+                <button onclick="expandImage()" class="absolute bottom-4 right-4 bg-black/50 hover:bg-black/70 rounded-full w-10 h-10 flex items-center justify-center text-white text-lg" title="View Full Size">
+                    🔍
+                </button>
             </div>
             <div class="p-6">
                 <h3 id="viewModalTitle" class="text-2xl font-bold mb-2"></h3>

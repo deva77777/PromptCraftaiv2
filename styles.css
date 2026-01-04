@@ -684,6 +684,20 @@ input[type="range"]::-moz-range-thumb {
     line-height: 1.5;
 }
 
+/* ==================== FULL IMAGE MODAL ==================== */
+#fullImageModal {
+    animation: fadeIn 0.2s ease-out;
+}
+
+#fullImageModal img {
+    animation: zoomIn 0.3s ease-out;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
 /* ==================== RESPONSIVE ADJUSTMENTS ==================== */
 @media (max-width: 640px) {
     .live-counter {
