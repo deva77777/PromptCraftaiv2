@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YSXK3LHEYM"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9189144433387972" crossorigin="anonymous"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied' });
+        gtag('config', 'G-YSXK3LHEYM', { 'anonymize_ip': true, 'cookie_flags': 'SameSite=None;Secure' });
+        function grantAnalyticsConsent() { gtag('consent', 'update', { 'analytics_storage': 'granted' }); }
+    </script>
+    
+    <!-- Primary Meta Tags -->
+    <title>AI Image Prompt Generator | Create Perfect Midjourney, DALL-E & Stable Diffusion Prompts</title>
+    <meta name="title" content="AI Image Prompt Generator | Create Perfect Midjourney, DALL-E & Stable Diffusion Prompts">
+    <meta name="description" content="Free AI image prompt generator for Midjourney, DALL-E, Stable Diffusion, Leonardo AI & Google ImageFX. Master photography prompts with 500+ options for lighting, camera angles, styles, compositions & more.">
+    <meta name="keywords" content="AI image prompt generator, Midjourney prompts, DALL-E prompts, Stable Diffusion prompts, AI art generator, photography prompts">
+    <meta name="author" content="PromptCraft AI">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://promptcraftai.xyz/">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://promptcraftai.xyz/">
+    <meta property="og:title" content="AI Image Prompt Generator | PromptCraft AI">
+    <meta property="og:description" content="Free AI image prompt generator with 500+ options. Create stunning AI art today!">
+    <meta property="og:image" content="https://promptcraftai.xyz/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://promptcraftai.xyz/">
+    <meta name="twitter:title" content="AI Image Prompt Generator | PromptCraft AI">
+    <meta name="twitter:description" content="Free AI image prompt generator with 500+ options.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="gradient-bg min-h-screen text-white">
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookieConsentBanner" class="fixed bottom-0 left-0 right-0 z-[100] hidden cookie-banner">
+        <div class="bg-gray-900/95 backdrop-blur-md border-t border-white/20 p-4 md:p-6">
+            <div class="container mx-auto max-w-7xl">
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-2xl">🍪</span>
+                            <h3 class="font-semibold text-lg">We Value Your Privacy</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm">We use cookies to enhance your experience. 
+                            <a href="#" onclick="showPage('privacy'); return false;" class="text-purple-400 underline">Privacy Policy</a>
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="acceptAllCookies()" class="btn-gradient px-6 py-2.5 rounded-lg font-semibold text-sm">Accept All</button>
+                        <button onclick="acceptEssentialCookies()" class="bg-white/10 border border-white/20 px-6 py-2.5 rounded-lg font-semibold text-sm">Essential Only</button>
+                        <button onclick="openCookieSettings()" class="text-gray-400 hover:text-white px-4 py-2.5 text-sm underline">Customize</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Settings Modal -->
+    <div id="cookieSettingsModal" class="fixed inset-0 z-[110] hidden modal bg-black/70 flex items-center justify-center p-4">
+        <div class="bg-gray-900 rounded-2xl border border-white/20 w-full max-w-xl max-h-[90vh] overflow-hidden">
+            <div class="flex items-center justify-between p-6 border-b border-white/10">
+                <h2 class="text-xl font-bold">🍪 Cookie Preferences</h2>
+                <button onclick="closeCookieSettings()" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+            </div>
+            <div class="p-6 overflow-y-auto max-h-[60vh]">
+                <p class="text-gray-400 mb-6">Manage your cookie preferences below.</p>
+                
+                <div class="card-gradient rounded-xl p-4 border border-white/10 mb-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="font-semibold">Essential Cookies</h3>
+                        <span class="bg-green-600/30 text-green-300 text-xs px-3 py-1 rounded-full">Always Active</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Required for basic functionality.</p>
+                </div>
+                
+                <div class="card-gradient rounded-xl p-4 border border-white/10 mb-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="font-semibold">Analytics Cookies</h3>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="analyticsCookies" class="sr-only peer" checked>
+                            <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                        </label>
+                    </div>
+                    <p class="text-gray-400 text-sm">Help us understand how visitors use our site.</p>
+                </div>
+                
+                <div class="card-gradient rounded-xl p-4 border border-white/10 mb-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="font-semibold">Marketing Cookies</h3>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="marketingCookies" class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                        </label>
+                    </div>
+                    <p class="text-gray-400 text-sm">Used for personalized advertisements.</p>
+                </div>
+            </div>
+            <div class="p-6 border-t border-white/10 flex gap-3">
+                <button onclick="saveCustomCookiePreferences()" class="flex-1 btn-gradient py-3 rounded-lg font-semibold">Save Preferences</button>
+                <button onclick="closeCookieSettings()" class="px-6 py-3 rounded-lg font-semibold bg-gray-700 hover:bg-gray-600">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skip to main content -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-purple-600 text-white px-4 py-2 rounded-lg z-50">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-md border-b border-white/10">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center max-w-7xl">
+            <a href="#" onclick="showPage('landing'); return false;" class="flex items-center gap-2 cursor-pointer">
+                <span class="text-2xl">🎨</span>
+                <span class="font-bold text-xl bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">PromptCraft AI</span>
+            </a>
+            <div class="flex gap-4 items-center">
+                <a href="#" onclick="showPage('landing'); return false;" class="text-gray-300 hover:text-white transition hidden md:block">Home</a>
+                <a href="#" onclick="showPage('gallery'); return false;" class="text-gray-300 hover:text-white transition hidden md:block">Gallery</a>
+                <a href="#learn" onclick="showPage('landing'); return false;" class="text-gray-300 hover:text-white transition hidden md:block">Learn</a>
+                <button onclick="showPage('generator')" class="btn-gradient px-5 py-2 rounded-lg font-semibold hover:scale-105 transition transform">Open Generator</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== LANDING PAGE ==================== -->
+    <main id="landingPage" class="min-h-screen pt-20">
+        <!-- Hero Section -->
+        <header id="main-content" class="container mx-auto px-4 pt-12 pb-20 max-w-7xl">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+                        Create <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">Perfect Prompts</span> for AI Image Generation
+                    </h1>
+                    <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                        Master the art of AI photography prompts. Our intuitive generator helps you craft detailed, professional prompts for Midjourney, DALL-E, Stable Diffusion, and more.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="showPage('generator')" class="btn-gradient px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition transform flex items-center gap-2">
+                            <span>✨</span> Start Creating
+                        </button>
+                        <button onclick="showPage('gallery')" class="bg-white/10 border border-white/20 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/20 transition flex items-center gap-2">
+                            <span>🖼️</span> View Gallery
+                        </button>
+                    </div>
+                    <div class="mt-10 flex items-center gap-6 text-sm text-gray-400">
+                        <div class="flex items-center gap-2"><span class="text-green-400">✓</span> 20+ Categories</div>
+                        <div class="flex items-center gap-2"><span class="text-green-400">✓</span> 500+ Options</div>
+                        <div class="flex items-center gap-2"><span class="text-green-400">✓</span> Free to Use</div>
+                    </div>
+                    
+                    <!-- Trust Badges -->
+                    <div class="trust-badges">
+                        <div class="trust-badge">
+                            <span class="checkmark">✓</span>
+                            <span>100% Free</span>
+                        </div>
+                        <div class="trust-badge">
+                            <span class="checkmark">✓</span>
+                            <span>No Sign-up Required</span>
+                        </div>
+                        <div class="trust-badge">
+                            <span class="icon">🎨</span>
+                            <span>6+ AI Tools Supported</span>
+                        </div>
+                        <div class="trust-badge">
+                            <span class="icon">👥</span>
+                            <span id="userCount">50,000+</span> Users
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Start Buttons -->
+                    <div class="quick-start">
+                        <div class="quick-start-title">⚡ Quick Start Templates</div>
+                        <div class="quick-start-buttons">
+                            <button class="quick-btn" onclick="quickStartTemplate('portrait')">
+                                <span class="emoji">🎭</span> Portrait
+                            </button>
+                            <button class="quick-btn" onclick="quickStartTemplate('landscape')">
+                                <span class="emoji">🌅</span> Landscape
+                            </button>
+                            <button class="quick-btn" onclick="quickStartTemplate('scifi')">
+                                <span class="emoji">🚀</span> Sci-Fi
+                            </button>
+                            <button class="quick-btn" onclick="quickStartTemplate('fantasy')">
+                                <span class="emoji">✨</span> Fantasy
+                            </button>
+                            <button class="quick-btn" onclick="quickStartTemplate('product')">
+                                <span class="emoji">📸</span> Product
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Share -->
+                    <div class="mt-8 flex items-center gap-4">
+                        <span class="text-gray-500 text-sm">Share:</span>
+                        <div class="flex gap-2">
+                            <a href="https://twitter.com/intent/tweet?text=Check%20out%20this%20AI%20Prompt%20Generator!&url=https://promptcraftai.xyz" target="_blank" class="bg-[#1DA1F2]/20 hover:bg-[#1DA1F2]/40 text-[#1DA1F2] p-2 rounded-lg transition">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                            </a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://promptcraftai.xyz" target="_blank" class="bg-[#1877F2]/20 hover:bg-[#1877F2]/40 text-[#1877F2] p-2 rounded-lg transition">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                            </a>
+                            <a href="https://www.reddit.com/submit?url=https://promptcraftai.xyz&title=AI%20Prompt%20Generator" target="_blank" class="bg-[#FF4500]/20 hover:bg-[#FF4500]/40 text-[#FF4500] p-2 rounded-lg transition">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative float-animation hidden lg:block">
+                    <!-- Live Prompt Counter -->
+                    <div class="live-counter mb-6">
+                        <div class="counter-item">
+                            <div class="counter-number" id="promptsToday">12,847</div>
+                            <div class="counter-label">Prompts Generated Today</div>
+                        </div>
+                        <div class="counter-item">
+                            <div class="counter-number"><span class="pulse-dot"></span><span id="creatorsOnline">2,341</span></div>
+                            <div class="counter-label">Creators Online Now</div>
+                        </div>
+                        <div class="counter-item">
+                            <div class="counter-number" id="totalCopied">89,432</div>
+                            <div class="counter-label">Prompts Copied</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Typing Animation Demo -->
+                    <div class="card-gradient rounded-2xl p-6 border border-white/20 hero-glow">
+                        <div class="typing-demo">
+                            <div class="typing-text" id="typingDemo">
+                                <span class="prompt-tag tag-subject">A beautiful woman with flowing auburn hair</span>
+                            </div>
+                            <span class="typing-cursor"></span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="bg-purple-600/30 text-purple-300 px-3 py-1 rounded-full text-xs">Portrait</span>
+                            <span class="bg-pink-600/30 text-pink-300 px-3 py-1 rounded-full text-xs">Golden Hour</span>
+                            <span class="bg-blue-600/30 text-blue-300 px-3 py-1 rounded-full text-xs">Cinematic</span>
+                            <span class="bg-green-600/30 text-green-300 px-3 py-1 rounded-full text-xs">85mm Lens</span>
+                        </div>
+                        
+                        <!-- Before/After Comparison -->
+                        <div class="comparison-box">
+                            <div class="comparison-item comparison-bad">
+                                <div class="comparison-label">❌ Basic Prompt</div>
+                                <div class="comparison-text">"a woman portrait"</div>
+                            </div>
+                            <div class="comparison-item comparison-good">
+                                <div class="comparison-label">✅ PromptCraft Prompt</div>
+                                <div class="comparison-text">"A beautiful woman, Portrait, Close-up, Golden Hour lighting, Cinematic, 8K..."</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Features Section -->
+        <section id="learn" class="bg-black/20 py-20">
+            <div class="container mx-auto px-4 max-w-7xl">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Why Use a Prompt Generator?</h2>
+                    <p class="text-gray-400 text-lg max-w-2xl mx-auto">AI image generators are only as good as the prompts you give them.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="card-gradient rounded-xl p-6 border border-white/10 text-center">
+                        <div class="text-5xl mb-4">🎯</div>
+                        <h3 class="text-xl font-semibold mb-3">Precision Control</h3>
+                        <p class="text-gray-400">Control camera angles, lighting, mood, and style with precise terminology.</p>
+                    </div>
+                    <div class="card-gradient rounded-xl p-6 border border-white/10 text-center">
+                        <div class="text-5xl mb-4">⚡</div>
+                        <h3 class="text-xl font-semibold mb-3">Save Time</h3>
+                        <p class="text-gray-400">No more trial and error. Select from curated professional options.</p>
+                    </div>
+                    <div class="card-gradient rounded-xl p-6 border border-white/10 text-center">
+                        <div class="text-5xl mb-4">📈</div>
+                        <h3 class="text-xl font-semibold mb-3">Better Results</h3>
+                        <p class="text-gray-400">Structured prompts produce consistent, high-quality outputs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Gallery Slider Preview Section -->
+        <section class="gallery-slider-section">
+            <div class="gallery-slider-title">
+                <h3 class="text-white">🖼️ See What Others Have Created</h3>
+                <p>Hover to pause • Click to view prompt</p>
+            </div>
+            <div class="gallery-slider" id="gallerySlider">
+                <!-- Slider cards will be populated by JavaScript -->
+                <div class="slider-card">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400" alt="Portrait">
+                    <div class="slider-card-content">
+                        <div class="slider-card-title">Ethereal Portrait</div>
+                        <div class="slider-card-prompt">Beautiful woman, golden hour lighting, cinematic style, 8K resolution...</div>
+                        <span class="slider-card-badge">Midjourney</span>
+                    </div>
+                </div>
+                <div class="slider-card">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400" alt="Landscape">
+                    <div class="slider-card-content">
+                        <div class="slider-card-title">Mountain Sunrise</div>
+                        <div class="slider-card-prompt">Majestic mountain peaks, golden sunrise, volumetric fog, dramatic...</div>
+                        <span class="slider-card-badge">DALL-E</span>
+                    </div>
+                </div>
+                <div class="slider-card">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400" alt="Fantasy">
+                    <div class="slider-card-content">
+                        <div class="slider-card-title">Enchanted Forest</div>
+                        <div class="slider-card-prompt">Magical forest, glowing fireflies, ethereal atmosphere, fantasy style...</div>
+                        <span class="slider-card-badge">Stable Diffusion</span>
+                    </div>
+                </div>
+                <div class="slider-card">
+                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400" alt="Sci-Fi">
+                    <div class="slider-card-content">
+                        <div class="slider-card-title">Cyberpunk City</div>
+                        <div class="slider-card-prompt">Futuristic cityscape, neon lights, rain, cyberpunk aesthetic, detailed...</div>
+                        <span class="slider-card-badge">Leonardo AI</span>
+                    </div>
+                </div>
+                <div class="slider-card">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400" alt="Fashion">
+                    <div class="slider-card-content">
+                        <div class="slider-card-title">Fashion Editorial</div>
+                        <div class="slider-card-prompt">High fashion model, studio lighting, vogue style, professional photo...</div>
+                        <span class="slider-card-badge">Midjourney</span>
+                    </div>
+                </div>
+                <div class="slider-card">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400" alt="Space">
+                    <div class="slider-card-content">
+                        <div class="slider-card-title">Deep Space</div>
+                        <div class="slider-card-prompt">Cosmic nebula, stars, planets, space exploration, epic scale, 8K...</div>
+                        <span class="slider-card-badge">DALL-E</span>
+                    </div>
+                </div>
+                <!-- Duplicate for infinite scroll -->
+                <div class="slider-card">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400" alt="Portrait">
+                    <div class="slider-card-content">
+                        <div class="slider-card-title">Ethereal Portrait</div>
+                        <div class="slider-card-prompt">Beautiful woman, golden hour lighting, cinematic style, 8K resolution...</div>
+                        <span class="slider-card-badge">Midjourney</span>
+                    </div>
+                </div>
+                <div class="slider-card">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400" alt="Landscape">
+                    <div class="slider-card-content">
+                        <div class="slider-card-title">Mountain Sunrise</div>
+                        <div class="slider-card-prompt">Majestic mountain peaks, golden sunrise, volumetric fog, dramatic...</div>
+                        <span class="slider-card-badge">DALL-E</span>
+                    </div>
+                </div>
+                <div class="slider-card">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400" alt="Fantasy">
+                    <div class="slider-card-content">
+                        <div class="slider-card-title">Enchanted Forest</div>
+                        <div class="slider-card-prompt">Magical forest, glowing fireflies, ethereal atmosphere, fantasy style...</div>
+                        <span class="slider-card-badge">Stable Diffusion</span>
+                    </div>
+                </div>
+                <div class="slider-card">
+                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400" alt="Sci-Fi">
+                    <div class="slider-card-content">
+                        <div class="slider-card-title">Cyberpunk City</div>
+                        <div class="slider-card-prompt">Futuristic cityscape, neon lights, rain, cyberpunk aesthetic, detailed...</div>
+                        <span class="slider-card-badge">Leonardo AI</span>
+                    </div>
+                </div>
+                <div class="slider-card">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400" alt="Fashion">
+                    <div class="slider-card-content">
+                        <div class="slider-card-title">Fashion Editorial</div>
+                        <div class="slider-card-prompt">High fashion model, studio lighting, vogue style, professional photo...</div>
+                        <span class="slider-card-badge">Midjourney</span>
+                    </div>
+                </div>
+                <div class="slider-card">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400" alt="Space">
+                    <div class="slider-card-content">
+                        <div class="slider-card-title">Deep Space</div>
+                        <div class="slider-card-prompt">Cosmic nebula, stars, planets, space exploration, epic scale, 8K...</div>
+                        <span class="slider-card-badge">DALL-E</span>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-6">
+                <button onclick="showPage('gallery')" class="btn-gradient px-8 py-3 rounded-xl font-semibold hover:scale-105 transition transform">
+                    View Full Gallery →
+                </button>
+            </div>
+        </section>
+
+        <!-- Properties Section -->
+        <section id="properties" class="py-20">
+            <div class="container mx-auto px-4 max-w-7xl">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Understanding Prompt Properties</h2>
+                    <p class="text-gray-400 text-lg max-w-3xl mx-auto">Each property affects the final image. Master these elements.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="property-card card-gradient rounded-xl p-6 border border-white/10">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl">📷</span>
+                            <h3 class="text-xl font-semibold">Image Type</h3>
+                        </div>
+                        <p class="text-gray-400 mb-4">Defines the category and purpose of your image.</p>
+                        <div class="bg-black/30 rounded-lg p-3"><p class="text-sm text-gray-300"><strong>Examples:</strong> Portrait, Landscape, Product Shot, Fashion</p></div>
+                    </div>
+                    <div class="property-card card-gradient rounded-xl p-6 border border-white/10">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl">🎬</span>
+                            <h3 class="text-xl font-semibold">Shot Type</h3>
+                        </div>
+                        <p class="text-gray-400 mb-4">How much of the subject fills the frame.</p>
+                        <div class="bg-black/30 rounded-lg p-3"><p class="text-sm text-gray-300"><strong>Examples:</strong> Close-up, Medium Shot, Wide Shot</p></div>
+                    </div>
+                    <div class="property-card card-gradient rounded-xl p-6 border border-white/10">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl">📐</span>
+                            <h3 class="text-xl font-semibold">Camera Angle</h3>
+                        </div>
+                        <p class="text-gray-400 mb-4">Camera position relative to the subject.</p>
+                        <div class="bg-black/30 rounded-lg p-3"><p class="text-sm text-gray-300"><strong>Examples:</strong> Eye Level, High Angle, Low Angle</p></div>
+                    </div>
+                    <div class="property-card card-gradient rounded-xl p-6 border border-white/10">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl">💡</span>
+                            <h3 class="text-xl font-semibold">Lighting</h3>
+                        </div>
+                        <p class="text-gray-400 mb-4">How light falls on your subject - the most crucial element.</p>
+                        <div class="bg-black/30 rounded-lg p-3"><p class="text-sm text-gray-300"><strong>Examples:</strong> Golden Hour, Rembrandt, Neon, Volumetric</p></div>
+                    </div>
+                    <div class="property-card card-gradient rounded-xl p-6 border border-white/10">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl">🎭</span>
+                            <h3 class="text-xl font-semibold">Mood</h3>
+                        </div>
+                        <p class="text-gray-400 mb-4">The emotional feeling and ambiance.</p>
+                        <div class="bg-black/30 rounded-lg p-3"><p class="text-sm text-gray-300"><strong>Examples:</strong> Dreamy, Mysterious, Dramatic, Ethereal</p></div>
+                    </div>
+                    <div class="property-card card-gradient rounded-xl p-6 border border-white/10">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl">⭐</span>
+                            <h3 class="text-xl font-semibold">Quality</h3>
+                        </div>
+                        <p class="text-gray-400 mb-4">Terms that boost image quality and detail.</p>
+                        <div class="bg-black/30 rounded-lg p-3"><p class="text-sm text-gray-300"><strong>Examples:</strong> 8K Resolution, Sharp Focus, Masterpiece</p></div>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="mt-16 text-center">
+                    <div class="card-gradient rounded-2xl p-10 border border-white/20 max-w-3xl mx-auto">
+                        <h3 class="text-2xl md:text-3xl font-bold mb-4">Ready to Create Amazing Prompts?</h3>
+                        <p class="text-gray-400 mb-8">Use our generator to craft the perfect prompt for your next AI masterpiece.</p>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <button onclick="showPage('generator')" class="btn-gradient px-10 py-4 rounded-xl font-bold text-lg hover:scale-105 transition transform inline-flex items-center gap-3">
+                                <span class="text-2xl">🚀</span> Launch Prompt Generator
+                            </button>
+                            <button onclick="showPage('gallery')" class="bg-white/10 border border-white/20 px-10 py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition inline-flex items-center gap-3">
+                                <span class="text-2xl">🖼️</span> Browse Gallery
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-20 bg-black/20">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
+                    <p class="text-gray-400 text-lg">Everything you need to know about AI image prompts</p>
+                </div>
+                
+                <div class="space-y-4">
+                    <details class="card-gradient rounded-xl border border-white/10 group">
+                        <summary class="p-6 cursor-pointer flex items-center justify-between font-semibold text-lg hover:text-purple-400 transition list-none">
+                            <span>What is an AI image prompt generator?</span>
+                            <span class="text-2xl group-open:rotate-45 transition-transform">+</span>
+                        </summary>
+                        <div class="px-6 pb-6 text-gray-400">
+                            <p>An AI image prompt generator is a tool that helps you create detailed, structured text prompts for AI image generation tools like <strong>Midjourney</strong>, <strong>DALL-E</strong>, <strong>Stable Diffusion</strong>, <strong>Leonardo AI</strong>, and <strong>Google ImageFX</strong>.</p>
+                        </div>
+                    </details>
+                    
+                    <details class="card-gradient rounded-xl border border-white/10 group">
+                        <summary class="p-6 cursor-pointer flex items-center justify-between font-semibold text-lg hover:text-purple-400 transition list-none">
+                            <span>What AI tools work with these prompts?</span>
+                            <span class="text-2xl group-open:rotate-45 transition-transform">+</span>
+                        </summary>
+                        <div class="px-6 pb-6 text-gray-400">
+                            <p>Our prompts work with all major AI image generators including Midjourney, DALL-E 3, Stable Diffusion, Leonardo AI, Adobe Firefly, Google ImageFX, and other text-to-image AI tools.</p>
+                        </div>
+                    </details>
+                    
+                    <details class="card-gradient rounded-xl border border-white/10 group">
+                        <summary class="p-6 cursor-pointer flex items-center justify-between font-semibold text-lg hover:text-purple-400 transition list-none">
+                            <span>Is this AI prompt generator free to use?</span>
+                            <span class="text-2xl group-open:rotate-45 transition-transform">+</span>
+                        </summary>
+                        <div class="px-6 pb-6 text-gray-400">
+                            <p>Yes! <strong>PromptCraft AI is completely free</strong> to use with no sign-up required. You can generate unlimited prompts, copy them instantly, and use them with any AI image generation tool.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-black/30 py-12 border-t border-white/10">
+            <div class="container mx-auto px-4 max-w-7xl">
+                <div class="grid md:grid-cols-4 gap-8 mb-8">
+                    <div class="md:col-span-2">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="text-2xl">🎨</span>
+                            <span class="font-bold text-xl bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">PromptCraft AI</span>
+                        </div>
+                        <p class="text-gray-400 mb-4">The ultimate free AI image prompt generator. Create professional prompts for Midjourney, DALL-E, Stable Diffusion, and more.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold mb-4 text-white">Quick Links</h3>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#" onclick="showPage('generator'); return false;" class="hover:text-purple-400 transition">Prompt Generator</a></li>
+                            <li><a href="#" onclick="showPage('gallery'); return false;" class="hover:text-purple-400 transition">Gallery</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold mb-4 text-white">Legal</h3>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#" onclick="showPage('privacy'); return false;" class="hover:text-purple-400 transition">Privacy Policy</a></li>
+                            <li><a href="#" onclick="showPage('terms'); return false;" class="hover:text-purple-400 transition">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="border-t border-white/10 pt-8 text-center">
+                    <p class="text-gray-500 text-sm">Made with ❤️ for AI artists worldwide • © 2024 PromptCraft AI</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- ==================== GALLERY PAGE ==================== -->
+    <section id="galleryPage" class="min-h-screen pt-24 hidden">
+        <div class="container mx-auto px-4 py-8 max-w-7xl">
+            <!-- Header -->
+            <div class="text-center mb-10">
+                <h1 class="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">🖼️ Community Prompt Gallery</h1>
+                <p class="text-gray-400 text-lg">Ready-to-use prompts with generated images. Click to copy and create your own!</p>
+                
+                <!-- Submit Your Creation Button -->
+                <div class="mt-6">
+                    <button onclick="openSubmitModal()" class="btn-gradient px-8 py-3 rounded-xl font-bold text-lg hover:scale-105 transition transform inline-flex items-center gap-3 shadow-lg">
+                        <span class="text-xl">📤</span> Submit Your Creation
+                    </button>
+                    <p class="text-gray-500 text-sm mt-2">Share your AI masterpiece with the community!</p>
+                </div>
+                
+                <!-- Storage Status -->
+                <div class="mt-4 text-sm">
+                    <span class="text-gray-500">Storage: </span>
+                    <span id="storageType" class="text-purple-400">Checking...</span>
+                </div>
+                
+                <!-- Admin Toggle -->
+                <button onclick="toggleAdminPanel()" class="mt-4 text-sm text-gray-500 hover:text-purple-400 transition">🔐 Admin Access</button>
+            </div>
+
+            <!-- Filter Tags -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8" id="filterTags">
+                <button class="filter-btn px-4 py-2 rounded-full border border-white/20 bg-purple-600/50 text-white text-sm" data-filter="all" onclick="filterGallery('all')">All</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-white/20 hover:bg-white/10 text-gray-300 text-sm" data-filter="portrait" onclick="filterGallery('portrait')">Portrait</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-white/20 hover:bg-white/10 text-gray-300 text-sm" data-filter="landscape" onclick="filterGallery('landscape')">Landscape</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-white/20 hover:bg-white/10 text-gray-300 text-sm" data-filter="fantasy" onclick="filterGallery('fantasy')">Fantasy</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-white/20 hover:bg-white/10 text-gray-300 text-sm" data-filter="cinematic" onclick="filterGallery('cinematic')">Cinematic</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-white/20 hover:bg-white/10 text-gray-300 text-sm" data-filter="scifi" onclick="filterGallery('scifi')">Sci-Fi</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid"></div>
+
+            <!-- Empty State -->
+            <div id="emptyGallery" class="hidden text-center py-20">
+                <div class="text-6xl mb-4">🖼️</div>
+                <h3 class="text-xl font-semibold mb-2">No prompts in gallery yet</h3>
+                <p class="text-gray-400 mb-6">Be the first to add some amazing prompts!</p>
+                <button onclick="openSubmitModal()" class="btn-gradient px-6 py-3 rounded-lg font-semibold">Submit Your First Prompt</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SUBMIT MODAL ==================== -->
+    <div id="submitModal" class="fixed inset-0 z-50 hidden modal bg-black/70 flex items-center justify-center p-4">
+        <div class="bg-gray-900 rounded-2xl border border-white/20 w-full max-w-2xl max-h-[90vh] overflow-hidden">
+            <div class="flex items-center justify-between p-6 border-b border-white/10">
+                <div>
+                    <h2 class="text-2xl font-bold flex items-center gap-2">📤 Submit Your Creation</h2>
+                    <p class="text-gray-400 text-sm mt-1">Share your AI artwork with the community</p>
+                </div>
+                <button onclick="closeSubmitModal()" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+            </div>
+            <div class="p-6 overflow-y-auto max-h-[calc(90vh-160px)]">
+                <form id="submitForm" onsubmit="submitCreation(event)">
+                    <div class="mb-5">
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Image URL *</label>
+                        <input type="url" id="submitImageUrl" required placeholder="https://i.imgur.com/your-image.jpg" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500" onchange="previewSubmitImage(event)">
+                        <p class="text-xs text-gray-500 mt-1">Upload to <a href="https://imgur.com" target="_blank" class="text-purple-400">Imgur</a> or <a href="https://imgbb.com" target="_blank" class="text-purple-400">ImgBB</a> first</p>
+                        <div id="submitImagePreview" class="hidden mt-3">
+                            <img id="submitPreviewImg" class="w-full max-h-48 object-cover rounded-lg border border-white/20">
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Title *</label>
+                        <input type="text" id="submitTitle" required placeholder="e.g., Enchanted Forest Princess" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500">
+                    </div>
+                    <div class="mb-5">
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Your Prompt *</label>
+                        <textarea id="submitPrompt" required rows="4" placeholder="Paste the exact prompt you used..." class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500"></textarea>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4 mb-5">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Category *</label>
+                            <select id="submitCategory" required class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500">
+                                <option value="">Select category</option>
+                                <option value="portrait">Portrait</option>
+                                <option value="landscape">Landscape</option>
+                                <option value="fantasy">Fantasy</option>
+                                <option value="cinematic">Cinematic</option>
+                                <option value="scifi">Sci-Fi</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">AI Tool Used *</label>
+                            <select id="submitAiTool" required class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500">
+                                <option value="">Select AI tool</option>
+                                <option value="Midjourney">Midjourney</option>
+                                <option value="DALL-E">DALL-E 3</option>
+                                <option value="Stable Diffusion">Stable Diffusion</option>
+                                <option value="Leonardo AI">Leonardo AI</option>
+                                <option value="Adobe Firefly">Adobe Firefly</option>
+                                <option value="Google ImageFX">Google ImageFX</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Creator Info -->
+                    <div class="border-t border-white/10 pt-5 mb-5">
+                        <h4 class="font-semibold text-purple-400 mb-3 flex items-center gap-2"><span>👤</span> Creator Information (Optional)</h4>
+                        <p class="text-gray-500 text-xs mb-4">Get credited for your work!</p>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Your Name</label>
+                                <input type="text" id="submitCreatorName" placeholder="John Doe" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Social Handle</label>
+                                <input type="text" id="submitCreatorHandle" placeholder="@johndoe" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500">
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Profile URL</label>
+                            <input type="url" id="submitCreatorUrl" placeholder="https://twitter.com/johndoe" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500">
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Tags (comma separated)</label>
+                        <input type="text" id="submitTags" placeholder="portrait, fantasy, golden hour" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500">
+                    </div>
+                    <div class="mb-6 flex items-start gap-3">
+                        <input type="checkbox" id="submitAgree" required class="mt-1 w-4 h-4 accent-purple-600">
+                        <label for="submitAgree" class="text-sm text-gray-400">I confirm this is my own creation and agree to the <a href="#" onclick="showPage('terms'); closeSubmitModal(); return false;" class="text-purple-400 hover:underline">Terms of Service</a>.</label>
+                    </div>
+                    <button type="submit" class="w-full btn-gradient py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2">
+                        <span>🚀</span> Submit for Review
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== ADMIN MODAL ==================== -->
+    <div id="adminModal" class="fixed inset-0 z-50 hidden modal bg-black/70 flex items-center justify-center p-4">
+        <div class="bg-gray-900 rounded-2xl border border-white/20 w-full max-w-4xl max-h-[90vh] overflow-hidden">
+            <div class="flex items-center justify-between p-6 border-b border-white/10">
+                <h2 class="text-2xl font-bold">🔐 Admin Panel</h2>
+                <button onclick="closeAdminPanel()" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+            </div>
+            <div class="p-6 overflow-y-auto max-h-[calc(90vh-80px)]">
+                <!-- Login Form -->
+                <div id="adminLogin" class="max-w-md mx-auto">
+                    <div class="card-gradient rounded-xl p-6 border border-white/10">
+                        <h3 class="text-xl font-semibold mb-4 text-center">🔐 Admin Login</h3>
+                        <div id="loginError" class="hidden bg-red-600/20 border border-red-500/50 text-red-300 text-sm p-3 rounded-lg mb-4"></div>
+                        <input type="email" id="adminEmail" placeholder="Email address" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 mb-3 focus:outline-none focus:border-purple-500">
+                        <input type="password" id="adminPassword" placeholder="Password" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 mb-4 focus:outline-none focus:border-purple-500" onkeypress="if(event.key==='Enter')loginAdmin()">
+                        <button onclick="loginAdmin()" id="loginBtn" class="w-full btn-gradient py-3 rounded-lg font-semibold flex items-center justify-center gap-2"><span>🔓</span> Sign In</button>
+                    </div>
+                </div>
+
+                <!-- Admin Dashboard -->
+                <div id="adminDashboard" class="hidden">
+                    <div class="bg-green-600/20 border border-green-500/30 rounded-xl p-4 mb-6 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <span class="text-2xl">👤</span>
+                            <div>
+                                <p class="text-green-300 font-medium">Logged in as Admin</p>
+                                <p id="adminUserEmail" class="text-green-400/70 text-sm"></p>
+                            </div>
+                        </div>
+                        <button onclick="logoutAdmin()" class="bg-red-600/50 hover:bg-red-600/70 px-4 py-2 rounded-lg text-sm font-medium">🚪 Logout</button>
+                    </div>
+                    
+                    <!-- Add New Card Form -->
+                    <div class="card-gradient rounded-xl p-6 border border-white/10 mb-6">
+                        <h3 class="text-xl font-semibold mb-4" id="formTitle">➕ Add New Prompt</h3>
+                        <form id="promptForm" onsubmit="savePromptCard(event)">
+                            <input type="hidden" id="editingId">
+                            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label class="block text-sm text-gray-400 mb-2">Title *</label>
+                                    <input type="text" id="cardTitle" required placeholder="e.g., Mystical Forest Portrait" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-gray-400 mb-2">Category *</label>
+                                    <select id="cardCategory" required class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500">
+                                        <option value="">Select category</option>
+                                        <option value="portrait">Portrait</option>
+                                        <option value="landscape">Landscape</option>
+                                        <option value="fantasy">Fantasy</option>
+                                        <option value="cinematic">Cinematic</option>
+                                        <option value="scifi">Sci-Fi</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm text-gray-400 mb-2">Prompt *</label>
+                                <textarea id="cardPrompt" required rows="4" placeholder="Enter the full AI prompt..." class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500"></textarea>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm text-gray-400 mb-2">Image URL *</label>
+                                <input type="url" id="cardImageUrl" placeholder="https://example.com/image.jpg" onchange="previewImageUrl(event)" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500">
+                                <div id="imagePreviewContainer" class="hidden mt-3">
+                                    <img id="imagePreview" class="w-24 h-24 object-cover rounded-lg border border-white/20">
+                                </div>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label class="block text-sm text-gray-400 mb-2">AI Tool Used</label>
+                                    <select id="cardAiTool" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500">
+                                        <option value="">Select AI tool</option>
+                                        <option value="Midjourney">Midjourney</option>
+                                        <option value="DALL-E">DALL-E 3</option>
+                                        <option value="Stable Diffusion">Stable Diffusion</option>
+                                        <option value="Leonardo AI">Leonardo AI</option>
+                                        <option value="Adobe Firefly">Adobe Firefly</option>
+                                        <option value="Google ImageFX">Google ImageFX</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-gray-400 mb-2">Tags (comma separated)</label>
+                                    <input type="text" id="cardTags" placeholder="portrait, golden hour" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500">
+                                </div>
+                            </div>
+                            <div class="border-t border-white/10 pt-4 mb-4">
+                                <h4 class="text-sm font-semibold text-purple-400 mb-3">👤 Creator Information (Optional)</h4>
+                                <div class="grid md:grid-cols-3 gap-4">
+                                    <input type="text" id="cardCreatorName" placeholder="Creator Name" class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-purple-500">
+                                    <input type="text" id="cardCreatorHandle" placeholder="@handle" class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-purple-500">
+                                    <input type="url" id="cardCreatorUrl" placeholder="Profile URL" class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-purple-500">
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <button type="submit" class="flex-1 btn-gradient py-3 rounded-lg font-semibold">💾 Save Prompt</button>
+                                <button type="button" onclick="resetForm()" class="px-6 py-3 rounded-lg font-semibold bg-gray-700 hover:bg-gray-600">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Existing Cards List -->
+                    <div class="card-gradient rounded-xl p-6 border border-white/10">
+                        <h3 class="text-xl font-semibold mb-4">📋 Manage Prompts</h3>
+                        <div id="adminCardsList" class="space-y-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== VIEW PROMPT MODAL ==================== -->
+    <div id="viewPromptModal" class="fixed inset-0 z-50 hidden modal bg-black/70 flex items-center justify-center p-4">
+        <div class="bg-gray-900 rounded-2xl border border-white/20 w-full max-w-3xl max-h-[90vh] overflow-hidden">
+            <div class="relative">
+                <img id="viewModalImage" class="w-full h-64 md:h-80 object-cover">
+                <button onclick="closeViewModal()" class="absolute top-4 right-4 bg-black/50 hover:bg-black/70 rounded-full w-10 h-10 flex items-center justify-center text-white text-xl">&times;</button>
+                <div id="viewModalAiBadge" class="absolute bottom-4 left-4"></div>
+            </div>
+            <div class="p-6">
+                <h3 id="viewModalTitle" class="text-2xl font-bold mb-2"></h3>
+                <div id="viewModalCreator" class="hidden mb-4 flex items-center gap-3">
+                    <span class="text-gray-400 text-sm">Created by</span>
+                    <a id="viewModalCreatorLink" href="#" target="_blank" class="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition creator-link">
+                        <span id="viewModalCreatorName" class="font-medium"></span>
+                        <span id="viewModalCreatorHandle" class="text-gray-500 text-sm"></span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-4" id="viewModalTags"></div>
+                <div class="bg-black/30 rounded-lg p-4 mb-4">
+                    <p id="viewModalPrompt" class="text-gray-300 leading-relaxed"></p>
+                </div>
+                <button onclick="copyGalleryPrompt()" class="w-full btn-gradient py-3 rounded-lg font-semibold flex items-center justify-center gap-2">
+                    <span>📋</span> Copy Prompt
+                </button>
+                <!-- Share Buttons -->
+                <div class="mt-4 pt-4 border-t border-white/10">
+                    <p class="text-sm text-gray-400 mb-3 text-center">Share this prompt:</p>
+                    <div class="flex justify-center gap-2 flex-wrap">
+                        <button onclick="shareToTwitter()" class="bg-[#1DA1F2]/20 hover:bg-[#1DA1F2]/40 text-[#1DA1F2] p-2.5 rounded-lg transition" title="Twitter">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </button>
+                        <button onclick="shareToFacebook()" class="bg-[#1877F2]/20 hover:bg-[#1877F2]/40 text-[#1877F2] p-2.5 rounded-lg transition" title="Facebook">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </button>
+                        <button onclick="shareToPinterest()" class="bg-[#E60023]/20 hover:bg-[#E60023]/40 text-[#E60023] p-2.5 rounded-lg transition" title="Pinterest">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/></svg>
+                        </button>
+                        <button onclick="shareToWhatsApp()" class="bg-[#25D366]/20 hover:bg-[#25D366]/40 text-[#25D366] p-2.5 rounded-lg transition" title="WhatsApp">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        </button>
+                        <button onclick="shareToReddit()" class="bg-[#FF4500]/20 hover:bg-[#FF4500]/40 text-[#FF4500] p-2.5 rounded-lg transition" title="Reddit">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+                        </button>
+                        <button onclick="copyShareLink()" class="bg-gray-500/20 hover:bg-gray-500/40 text-gray-300 p-2.5 rounded-lg transition" title="Copy Link">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== GENERATOR PAGE ==================== -->
+    <section id="generatorPage" class="min-h-screen pt-24 hidden">
+        <div class="container mx-auto px-4 py-8 max-w-7xl">
+            <header class="text-center mb-10">
+                <h1 class="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">🎨 AI Image Prompt Generator</h1>
+                <p class="text-gray-400 text-lg">Create perfect prompts for AI image generation & photography</p>
+            </header>
+
+            <div class="grid lg:grid-cols-3 gap-6">
+                <!-- Left Column - Options -->
+                <div class="lg:col-span-2 space-y-4 max-h-[75vh] overflow-y-auto scrollbar-thin pr-2">
+                    
+                    <!-- Subject -->
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">👤 Subject</h3>
+                        <input type="text" id="subject" placeholder="e.g., A young woman with curly red hair, a majestic lion..." class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500 placeholder-gray-500">
+                    </div>
+
+                    <!-- Image Type -->
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">📷 Image Type</h3>
+                        <div class="flex flex-wrap gap-2" id="imageType">
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Portrait">Portrait</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Landscape">Landscape</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Product Shot">Product Shot</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Fashion">Fashion</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Street Photography">Street Photography</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Wildlife">Wildlife</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Architecture">Architecture</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Abstract">Abstract</button>
+                        </div>
+                    </div>
+
+                    <!-- Shot Type -->
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">🎬 Shot Type / Framing</h3>
+                        <div class="flex flex-wrap gap-2" id="shotType">
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Extreme Close-up">Extreme Close-up</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Close-up">Close-up</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Medium Shot">Medium Shot</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Full Body Shot">Full Body Shot</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Wide Shot">Wide Shot</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Extreme Wide Shot">Extreme Wide Shot</button>
+                        </div>
+                    </div>
+
+                    <!-- Camera Angle -->
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">📐 Camera Angle</h3>
+                        <div class="flex flex-wrap gap-2" id="cameraAngle">
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Eye Level">Eye Level</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="High Angle">High Angle</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Low Angle">Low Angle</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Bird's Eye View">Bird's Eye View</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Dutch Angle">Dutch Angle</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="POV">POV</button>
+                        </div>
+                    </div>
+
+                    <!-- View -->
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">👁️ View / Perspective</h3>
+                        <div class="flex flex-wrap gap-2" id="view">
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Front View">Front View</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Side View">Side View</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="3/4 View">3/4 View</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Profile View">Profile View</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Back View">Back View</button>
+                        </div>
+                    </div>
+
+                    <!-- Lighting -->
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">💡 Lighting</h3>
+                        <div class="flex flex-wrap gap-2" id="lighting">
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Natural Light">Natural Light</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Golden Hour">Golden Hour</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Blue Hour">Blue Hour</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Rembrandt Lighting">Rembrandt Lighting</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Split Lighting">Split Lighting</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Backlit">Backlit</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Studio Lighting">Studio Lighting</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Neon Lighting">Neon Lighting</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Volumetric Lighting">Volumetric Lighting</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Rim Light">Rim Light</button>
+                        </div>
+                    </div>
+
+                    <!-- Mood -->
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">🎭 Mood / Atmosphere</h3>
+                        <div class="flex flex-wrap gap-2" id="mood">
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Dreamy">Dreamy</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Mysterious">Mysterious</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Romantic">Romantic</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Dramatic">Dramatic</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Ethereal">Ethereal</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Dark & Moody">Dark & Moody</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Epic">Epic</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Whimsical">Whimsical</button>
+                        </div>
+                    </div>
+
+                    <!-- Style -->
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">🎨 Style</h3>
+                        <div class="flex flex-wrap gap-2" id="style">
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Photorealistic">Photorealistic</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Cinematic">Cinematic</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Editorial">Editorial</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Fine Art">Fine Art</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Vintage">Vintage</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Film Noir">Film Noir</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Fantasy">Fantasy</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Sci-Fi">Sci-Fi</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Anime">Anime</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Hyperrealistic">Hyperrealistic</button>
+                        </div>
+                    </div>
+
+                    <!-- Art Style Presets -->
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10 border-l-4 border-l-pink-500">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">🖌️ Art Style Presets</h3>
+                        <p class="text-gray-400 text-sm mb-3">Popular artistic styles from famous artists, studios, and movements</p>
+                        <div class="flex flex-wrap gap-2" id="artStylePresets">
+                            <!-- Studio Styles -->
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Studio Ghibli style">🏯 Studio Ghibli</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Pixar style, 3D animated">🎬 Pixar</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Disney animation style">🏰 Disney</button>
+                            <!-- Artist Styles -->
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="in the style of Van Gogh, impressionist brushstrokes">🌻 Van Gogh</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="in the style of Monet, impressionist">🌸 Monet</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="in the style of Salvador Dali, surrealist">🕰️ Salvador Dali</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="in the style of Alphonse Mucha, Art Nouveau">🌺 Alphonse Mucha</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="in the style of Hokusai, ukiyo-e Japanese woodblock">🌊 Hokusai</button>
+                            <!-- Art Movements -->
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Art Deco style, geometric patterns">🔷 Art Deco</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Pop Art style, bold colors">🎨 Pop Art</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Watercolor painting style, soft edges">💧 Watercolor</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Oil painting style, rich textures">🖼️ Oil Painting</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Comic book style, bold outlines">💥 Comic Book</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Manga style, Japanese comics">📖 Manga</button>
+                            <!-- Modern Digital -->
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Cyberpunk style, neon, dystopian">🤖 Cyberpunk</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Steampunk style, Victorian, mechanical">⚙️ Steampunk</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Vaporwave aesthetic, retro, neon, 80s">🌴 Vaporwave</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Low poly style, geometric, 3D">📐 Low Poly</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Pixel art style, retro game">👾 Pixel Art</button>
+                        </div>
+                    </div>
+
+                    <!-- Emotion Picker -->
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10 border-l-4 border-l-yellow-500">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">😀 Emotion / Expression</h3>
+                        <p class="text-gray-400 text-sm mb-3">Define the emotional expression for portraits and characters</p>
+                        <div class="flex flex-wrap gap-2" id="emotion">
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="happy expression, smiling">😊 Happy</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="joyful expression, laughing">😄 Joyful</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="peaceful expression, serene">😌 Peaceful</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="confident expression, self-assured">😎 Confident</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="thoughtful expression, contemplative">🤔 Thoughtful</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="mysterious expression, enigmatic">🔮 Mysterious</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="determined expression, resolute">💪 Determined</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="fierce expression, intense gaze">🔥 Fierce</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="sad expression, melancholic">😢 Sad</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="surprised expression, shocked">😲 Surprised</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="seductive expression, alluring">💋 Seductive</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="ethereal expression, otherworldly">✨ Ethereal</button>
+                        </div>
+                    </div>
+
+                    <!-- Women's Hairstyles -->
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">💇‍♀️ Women's Hairstyles</h3>
+                        <div class="flex flex-wrap gap-2" id="womenHair">
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Long Flowing Hair">Long Flowing</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Curly Hair">Curly</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Beach Waves">Beach Waves</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Pixie Cut">Pixie Cut</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Bob Cut">Bob Cut</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Ponytail">Ponytail</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Messy Bun">Messy Bun</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Braided Hair">Braided</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Bangs">Bangs</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Elegant Updo">Elegant Updo</button>
+                        </div>
+                    </div>
+
+                    <!-- Men's Hairstyles -->
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">💇‍♂️ Men's Hairstyles</h3>
+                        <div class="flex flex-wrap gap-2" id="menHair">
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Short Cropped">Short Cropped</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Buzz Cut">Buzz Cut</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Fade Haircut">Fade</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Undercut">Undercut</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Slicked Back">Slicked Back</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Man Bun">Man Bun</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Long Hair">Long Hair</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Full Beard">Full Beard</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Stubble">Stubble</button>
+                        </div>
+                    </div>
+
+                    <!-- Hair Colors -->
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">🎨 Hair Colors</h3>
+                        <div class="flex flex-wrap gap-2" id="hairColor">
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Black Hair">Black</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Brown Hair">Brown</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Auburn Hair">Auburn</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Red Hair">Red</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Blonde Hair">Blonde</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Platinum Blonde">Platinum</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Silver Hair">Silver</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Blue Hair">Blue</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Pink Hair">Pink</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Rainbow Hair">Rainbow</button>
+                        </div>
+                    </div>
+
+                    <!-- Outfits -->
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">👗 Outfits</h3>
+                        <div class="flex flex-wrap gap-2" id="outfit">
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Casual Wear">Casual</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Formal Attire">Formal</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Evening Gown">Evening Gown</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Streetwear">Streetwear</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Victorian Dress">Victorian</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Cyberpunk Outfit">Cyberpunk</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Fantasy Armor">Fantasy Armor</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Haute Couture">Haute Couture</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Traditional Kimono">Kimono</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Leather Jacket">Leather Jacket</button>
+                        </div>
+                    </div>
+
+                    <!-- Background -->
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">🏞️ Background</h3>
+                        <div class="flex flex-wrap gap-2" id="background">
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Studio Backdrop">Studio Backdrop</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Urban Street">Urban Street</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Nature Forest">Nature Forest</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Beach">Beach</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Mountain">Mountain</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Futuristic City">Futuristic City</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Space">Space</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Bokeh Background">Bokeh Background</button>
+                        </div>
+                    </div>
+
+                    <!-- Time of Day -->
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">🌅 Time of Day</h3>
+                        <div class="flex flex-wrap gap-2" id="timeOfDay">
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Dawn">Dawn</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Morning">Morning</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Golden Hour">Golden Hour</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Sunset">Sunset</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Dusk">Dusk</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Night">Night</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Midnight">Midnight</button>
+                        </div>
+                    </div>
+
+                    <!-- Weather -->
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">🌤️ Weather</h3>
+                        <div class="flex flex-wrap gap-2" id="weather">
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Sunny">Sunny</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Cloudy">Cloudy</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Rainy">Rainy</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Snowy">Snowy</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Foggy">Foggy</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Stormy">Stormy</button>
+                        </div>
+                    </div>
+
+                    <!-- Camera & Lens -->
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">📸 Camera & Lens</h3>
+                        <div class="flex flex-wrap gap-2" id="camera">
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Canon EOS R5">Canon EOS R5</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Sony A7R IV">Sony A7R IV</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="35mm Lens">35mm Lens</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="50mm Lens">50mm Lens</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="85mm Portrait Lens">85mm Portrait Lens</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Wide Angle 24mm">Wide Angle 24mm</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Macro Lens">Macro Lens</button>
+                        </div>
+                    </div>
+
+                    <!-- Depth of Field -->
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">🔍 Depth of Field</h3>
+                        <div class="flex flex-wrap gap-2" id="dof">
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Shallow DOF f/1.4">Shallow DOF f/1.4</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Medium DOF f/5.6">Medium DOF f/5.6</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Deep DOF f/11">Deep DOF f/11</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Bokeh Effect">Bokeh Effect</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Tack Sharp">Tack Sharp</button>
+                        </div>
+                    </div>
+
+                    <!-- Color Grading -->
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">🎨 Color Grading</h3>
+                        <div class="flex flex-wrap gap-2" id="colorGrading">
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Vibrant Colors">Vibrant Colors</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Muted Tones">Muted Tones</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Black and White">Black and White</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Warm Tones">Warm Tones</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Cool Tones">Cool Tones</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Teal and Orange">Teal and Orange</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Film Emulation">Film Emulation</button>
+                        </div>
+                    </div>
+
+                    <!-- Quality -->
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">⭐ Quality Modifiers</h3>
+                        <div class="flex flex-wrap gap-2" id="quality">
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="8K Resolution">8K Resolution</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Ultra HD">Ultra HD</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Highly Detailed">Highly Detailed</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Sharp Focus">Sharp Focus</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Professional Photography">Professional Photography</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Award Winning">Award Winning</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="Masterpiece">Masterpiece</button>
+                        </div>
+                    </div>
+
+                    <!-- Aspect Ratio -->
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">📐 Aspect Ratio</h3>
+                        <div class="flex flex-wrap gap-2" id="aspectRatio">
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="1:1 Square">1:1 Square</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="4:3">4:3</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="16:9 Widescreen">16:9 Widescreen</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="9:16 Vertical">9:16 Vertical</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition" data-value="21:9 Ultrawide">21:9 Ultrawide</button>
+                        </div>
+                    </div>
+
+                    <!-- Negative Prompts -->
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10 border-l-4 border-l-red-500">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">🚫 Negative Prompts</h3>
+                        <p class="text-gray-400 text-sm mb-3">Select what to EXCLUDE from your image</p>
+                        <div class="flex flex-wrap gap-2" id="negativePrompts">
+                            <button class="option-btn px-4 py-2 rounded-lg border border-red-500/30 hover:bg-red-500/20 transition text-red-300" data-value="blurry">🔴 Blurry</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-red-500/30 hover:bg-red-500/20 transition text-red-300" data-value="low quality">🔴 Low Quality</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-red-500/30 hover:bg-red-500/20 transition text-red-300" data-value="deformed">🔴 Deformed</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-red-500/30 hover:bg-red-500/20 transition text-red-300" data-value="extra limbs">🔴 Extra Limbs</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-red-500/30 hover:bg-red-500/20 transition text-red-300" data-value="bad hands">🔴 Bad Hands</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-red-500/30 hover:bg-red-500/20 transition text-red-300" data-value="watermark">🔴 Watermark</button>
+                            <button class="option-btn px-4 py-2 rounded-lg border border-red-500/30 hover:bg-red-500/20 transition text-red-300" data-value="text">🔴 Text</button>
+                        </div>
+                    </div>
+
+                    <!-- Reference Image Section -->
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10 border-l-4 border-l-purple-500 bg-purple-900/10">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <h3 class="text-lg font-semibold flex items-center gap-2">🖼️ Use Reference Image</h3>
+                                <p class="text-gray-400 text-sm mt-1">Add your photo as reference for AI generation</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="useReferenceImage" class="sr-only peer" onchange="toggleReferenceOptions()">
+                                <div class="w-14 h-7 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-purple-600 peer-checked:shadow-lg peer-checked:shadow-purple-500/50"></div>
+                            </label>
+                        </div>
+                        
+                        <!-- Reference Options (hidden by default) -->
+                        <div id="referenceOptions" class="hidden space-y-4 mt-4 pt-4 border-t border-white/10">
+                            
+                            <!-- Reference Type -->
+                            <div>
+                                <label class="block text-sm font-medium text-purple-300 mb-2">📌 Reference Type</label>
+                                <div class="flex flex-wrap gap-2" id="referenceType">
+                                    <button class="ref-option px-4 py-2 rounded-lg border border-purple-500/30 hover:bg-purple-500/20 transition text-purple-300" data-value="Character Reference">🧑 Character/Face</button>
+                                    <button class="ref-option px-4 py-2 rounded-lg border border-purple-500/30 hover:bg-purple-500/20 transition text-purple-300" data-value="Style Reference">🎨 Style Transfer</button>
+                                    <button class="ref-option px-4 py-2 rounded-lg border border-purple-500/30 hover:bg-purple-500/20 transition text-purple-300" data-value="Pose Reference">🕺 Pose/Position</button>
+                                    <button class="ref-option px-4 py-2 rounded-lg border border-purple-500/30 hover:bg-purple-500/20 transition text-purple-300" data-value="Image Reference">🖼️ Full Image</button>
+                                </div>
+                            </div>
+
+                            <!-- Face/Character Preservation -->
+                            <div id="faceOptions" class="hidden">
+                                <label class="block text-sm font-medium text-blue-300 mb-2">👤 Face Preservation Level</label>
+                                <div class="flex flex-wrap gap-2" id="facePreservation">
+                                    <button class="ref-option px-4 py-2 rounded-lg border border-blue-500/30 hover:bg-blue-500/20 transition text-blue-300" data-value="preserve exact face, identical features">🎯 Exact Match</button>
+                                    <button class="ref-option px-4 py-2 rounded-lg border border-blue-500/30 hover:bg-blue-500/20 transition text-blue-300" data-value="preserve face features, similar look">👥 Similar Features</button>
+                                    <button class="ref-option px-4 py-2 rounded-lg border border-blue-500/30 hover:bg-blue-500/20 transition text-blue-300" data-value="preserve identity, artistic interpretation">🎨 Artistic</button>
+                                </div>
+                            </div>
+
+                            <!-- Style Transfer Options -->
+                            <div id="styleRefOptions" class="hidden">
+                                <label class="block text-sm font-medium text-pink-300 mb-2">🎨 Style Elements to Copy</label>
+                                <div class="flex flex-wrap gap-2" id="styleTransfer">
+                                    <button class="ref-option px-4 py-2 rounded-lg border border-pink-500/30 hover:bg-pink-500/20 transition text-pink-300" data-value="copy art style">🖌️ Art Style</button>
+                                    <button class="ref-option px-4 py-2 rounded-lg border border-pink-500/30 hover:bg-pink-500/20 transition text-pink-300" data-value="match color palette">🌈 Colors</button>
+                                    <button class="ref-option px-4 py-2 rounded-lg border border-pink-500/30 hover:bg-pink-500/20 transition text-pink-300" data-value="copy lighting style">💡 Lighting</button>
+                                    <button class="ref-option px-4 py-2 rounded-lg border border-pink-500/30 hover:bg-pink-500/20 transition text-pink-300" data-value="match mood and atmosphere">🎭 Mood</button>
+                                </div>
+                            </div>
+
+                            <!-- Pose/Composition Options -->
+                            <div id="poseOptions" class="hidden">
+                                <label class="block text-sm font-medium text-green-300 mb-2">🕺 Pose Elements</label>
+                                <div class="flex flex-wrap gap-2" id="compositionRef">
+                                    <button class="ref-option px-4 py-2 rounded-lg border border-green-500/30 hover:bg-green-500/20 transition text-green-300" data-value="copy exact pose">📐 Exact Pose</button>
+                                    <button class="ref-option px-4 py-2 rounded-lg border border-green-500/30 hover:bg-green-500/20 transition text-green-300" data-value="match body position">🧍 Body Position</button>
+                                    <button class="ref-option px-4 py-2 rounded-lg border border-green-500/30 hover:bg-green-500/20 transition text-green-300" data-value="copy composition layout">📷 Composition</button>
+                                </div>
+                            </div>
+
+                            <!-- Reference Strength Slider -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">
+                                    ⚡ Reference Strength: <span id="strengthValue" class="text-purple-400 font-bold">75%</span>
+                                </label>
+                                <input type="range" id="referenceStrength" min="0" max="100" value="75" 
+                                    class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer" 
+                                    oninput="updateStrength()">
+                                <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                    <span>Subtle (0%)</span>
+                                    <span>Balanced (50%)</span>
+                                    <span>Strong (100%)</span>
+                                </div>
+                            </div>
+
+                            <!-- Platform-Specific Syntax -->
+                            <div class="bg-black/30 rounded-lg p-4">
+                                <h4 class="text-sm font-semibold text-purple-400 mb-3">📋 How to Use Reference Images</h4>
+                                <div class="space-y-2 text-xs">
+                                    <div class="flex items-start gap-2 p-2 bg-blue-900/30 rounded">
+                                        <span class="bg-blue-600 text-white px-2 py-0.5 rounded text-xs font-bold">Midjourney</span>
+                                        <code class="text-blue-300">Upload image + prompt --cref URL --cw <span id="mjStrength">75</span></code>
+                                    </div>
+                                    <div class="flex items-start gap-2 p-2 bg-green-900/30 rounded">
+                                        <span class="bg-green-600 text-white px-2 py-0.5 rounded text-xs font-bold">Leonardo AI</span>
+                                        <span class="text-green-300">Use "Image Guidance" → Upload → Adjust strength</span>
+                                    </div>
+                                    <div class="flex items-start gap-2 p-2 bg-orange-900/30 rounded">
+                                        <span class="bg-orange-600 text-white px-2 py-0.5 rounded text-xs font-bold">Stable Diffusion</span>
+                                        <span class="text-orange-300">Use ControlNet / IP-Adapter extension</span>
+                                    </div>
+                                    <div class="flex items-start gap-2 p-2 bg-red-900/30 rounded">
+                                        <span class="bg-red-600 text-white px-2 py-0.5 rounded text-xs font-bold">DALL-E</span>
+                                        <span class="text-red-300">Use "Edit" mode → Upload image → Describe changes</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-500 text-xs mt-3">💡 Tip: Upload your reference image to the AI tool, then paste this prompt!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Generated Prompt -->
+                <div class="lg:col-span-1">
+                    <div class="card-gradient backdrop-blur-sm rounded-xl p-5 border border-white/10 sticky top-24 glow">
+                        <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">✨ Generated Prompt</h3>
+                        
+                        <!-- AI Enhancement Tools -->
+                        <div class="mb-4 p-3 bg-purple-900/30 rounded-lg border border-purple-500/30">
+                            <h4 class="text-sm font-medium text-purple-300 mb-2">🤖 AI Enhancement Tools</h4>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="enhanceWithAI('enhance')" class="bg-purple-600/50 hover:bg-purple-600/70 text-white text-sm py-2 px-3 rounded-lg transition flex items-center justify-center gap-1">✨ Enhance</button>
+                                <button onclick="enhanceWithAI('analyze')" class="bg-blue-600/50 hover:bg-blue-600/70 text-white text-sm py-2 px-3 rounded-lg transition flex items-center justify-center gap-1">🔍 Analyze</button>
+                                <button onclick="enhanceWithAI('variations')" class="bg-green-600/50 hover:bg-green-600/70 text-white text-sm py-2 px-3 rounded-lg transition flex items-center justify-center gap-1">🎲 Variations</button>
+                                <button onclick="enhanceWithAI('negative')" class="bg-red-600/50 hover:bg-red-600/70 text-white text-sm py-2 px-3 rounded-lg transition flex items-center justify-center gap-1">🚫 Negatives</button>
+                            </div>
+                            <div id="aiLoading" class="hidden mt-2 text-center text-purple-300 text-sm">
+                                <span class="animate-spin inline-block mr-2">⏳</span> AI is thinking...
+                            </div>
+                        </div>
+                        
+                        <div id="promptOutput" class="bg-black/30 rounded-lg p-4 min-h-[200px] mb-4 text-gray-300 whitespace-pre-wrap break-words">
+                            <span class="text-gray-500 italic">Your prompt will appear here...</span>
+                        </div>
+
+                        <div class="flex gap-2 mb-4">
+                            <button onclick="copyPrompt()" class="flex-1 btn-gradient text-white font-semibold py-3 px-4 rounded-lg transition transform hover:scale-105 flex items-center justify-center gap-2">
+                                <span>📋</span> Copy Prompt
+                            </button>
+                        </div>
+
+                        <div class="flex gap-2 mb-4">
+                            <button onclick="randomizeAll()" class="flex-1 bg-purple-600/50 hover:bg-purple-600/70 text-white font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2">
+                                <span>🎲</span> Random
+                            </button>
+                            <button onclick="clearAll()" class="flex-1 bg-red-600/50 hover:bg-red-600/70 text-white font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2">
+                                <span>🗑️</span> Clear
+                            </button>
+                        </div>
+
+                        <div class="border-t border-white/10 pt-4">
+                            <h4 class="text-sm font-medium text-gray-400 mb-2">Selected Elements:</h4>
+                            <div id="selectedTags" class="flex flex-wrap gap-2 min-h-[50px]">
+                                <span class="text-gray-500 text-sm italic">No elements selected</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PRIVACY PAGE ==================== -->
+    <section id="privacyPage" class="min-h-screen pt-24 hidden">
+        <div class="container mx-auto px-4 py-8 max-w-4xl">
+            <div class="card-gradient rounded-2xl p-8 md:p-12 border border-white/10">
+                <div class="text-center mb-10">
+                    <h1 class="text-3xl md:text-4xl font-bold mb-4">🔒 Privacy Policy</h1>
+                    <p class="text-gray-400">Last updated: January 2024</p>
+                </div>
+                <div class="legal-content text-gray-300">
+                    <p>Welcome to PromptCraft AI. We are committed to protecting your privacy and personal information.</p>
+                    <h2>1. Information We Collect</h2>
+                    <p>We collect minimal information including browser type, IP address (anonymized), pages visited, and prompts you create (stored locally in your browser).</p>
+                    <h2>2. How We Use Your Information</h2>
+                    <p>We use information to provide and improve our services, understand usage patterns, and develop new features.</p>
+                    <h2>3. Cookies</h2>
+                    <p>We use essential cookies for functionality and optional analytics cookies (Google Analytics) to understand site usage.</p>
+                    <h2>4. Contact Us</h2>
+                    <p>Email: aiphotohubforall@gmail.com</p>
+                </div>
+                <div class="mt-10 flex justify-center">
+                    <button onclick="showPage('landing')" class="btn-gradient px-8 py-3 rounded-lg font-semibold">← Back to Home</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== TERMS PAGE ==================== -->
+    <section id="termsPage" class="min-h-screen pt-24 hidden">
+        <div class="container mx-auto px-4 py-8 max-w-4xl">
+            <div class="card-gradient rounded-2xl p-8 md:p-12 border border-white/10">
+                <div class="text-center mb-10">
+                    <h1 class="text-3xl md:text-4xl font-bold mb-4">📜 Terms of Service</h1>
+                    <p class="text-gray-400">Last updated: January 2024</p>
+                </div>
+                <div class="legal-content text-gray-300">
+                    <p>By using PromptCraft AI, you agree to these terms.</p>
+                    <h2>1. Acceptance of Terms</h2>
+                    <p>By accessing our website, you accept and agree to be bound by these Terms of Service.</p>
+                    <h2>2. Description of Service</h2>
+                    <p>PromptCraft AI provides a free AI image prompt generator tool, educational content, and a gallery of example prompts.</p>
+                    <h2>3. User Responsibilities</h2>
+                    <p>Use the service for lawful purposes only. Do not generate prompts for illegal, harmful, or offensive content.</p>
+                    <h2>4. Free Service</h2>
+                    <p>PromptCraft AI is currently provided free of charge. We reserve the right to modify or discontinue the Service at any time.</p>
+                </div>
+                <div class="mt-10 flex justify-center">
+                    <button onclick="showPage('landing')" class="btn-gradient px-8 py-3 rounded-lg font-semibold">← Back to Home</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
